@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* database_block
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-29 14:11+0000\n"
+"PO-Revision-Date: 2023-03-29 16:14+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: database_block
+#: model_terms:ir.ui.view,arch_db:database_block.database-blocked
+msgid "<span class=\"text-danger\">Opps!</span> Site inaccessible."
+msgstr ""
+
+#. module: database_block
+#: model_terms:ir.ui.view,arch_db:database_block.database-blocked
+msgid "Connect to Emoory"
+msgstr "Se rendre sur Emoory"
+
+#. module: database_block
+#: model:ir.model,name:database_block.model_ir_http
+msgid "HTTP Routing"
+msgstr "Routage HTTP"
+
+#. module: database_block
+#: model_terms:ir.ui.view,arch_db:database_block.database-blocked
+msgid "Suspended Site"
+msgstr "Site Suspendu"
+
+#. module: database_block
+#: model_terms:ir.ui.view,arch_db:database_block.database-blocked
+msgid ""
+"The website you are trying to access is inaccessible.\n"
+"                        Please contact the administrator for assistance."
+msgstr ""
+"Le site auquel vous essayer d'accéder est inaccessible\n"
+"Merci de contacter l'administrateur pour une demande d'assistance. "

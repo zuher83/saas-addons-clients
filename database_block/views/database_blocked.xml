@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="database-blocked" name="Blocked Database">
+        <t t-call="web.frontend_layout">
+            <t t-set="html_data" t-value="{'style': 'height: 100%;'}" />
+            <t t-set="body_classname" t-value="'o_web_client database_suspend'" />
+            <t t-set="no_header" t-value="True" />
+            <t t-set="no_footer" t-value="True" />
+
+            <div class="d-flex align-items-center justify-content-center vh-100">
+                <div class="text-center">
+                    <h1 class="display-1 fw-bold">Suspended Site</h1>
+                    <p class="fs-3"> <span class="text-danger">Opps!</span> Site inaccessible.</p>
+                    <p class="lead">
+                        The website you are trying to access is inaccessible.
+                        Please contact the administrator for assistance.
+                    </p>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

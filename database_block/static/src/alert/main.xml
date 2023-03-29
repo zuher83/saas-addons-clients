@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Eugene Molotov <https://it-projects.info/team/em230418>
+     License MIT (https://opensource.org/licenses/MIT). -->
+<templates xml:space="preserve">
+    <t t-name="database_block.main" t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
+        <xpath expr="//nav" position="after">
+            <t t-set="databaseAlert" t-value="this.databaseAlert()" />
+            <t t-if="databaseAlert.type == 'warning'">
+                <div class="alert alert-warning database_block_message" style="margin-bottom:0;" role="alert">
+                    <div class="container text-center">
+                        <h3 class="alert-heading" t-esc="databaseAlert.message" />
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* database_expiration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-29 14:06+0000\n"
+"PO-Revision-Date: 2023-03-29 16:10+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: database_expiration
+#. odoo-python
+#: code:addons/database_expiration/models/ir_http.py:0
+#, python-format
+msgid "Could not get expiration warning delay: %s. Using default: 7 days"
+msgstr "Ne pas afficher d'alerte d'expirant avant le délai de: %s. Par défaut 7 jours"
+
+#. module: database_expiration
+#: model:ir.model,name:database_expiration.model_ir_http
+msgid "HTTP Routing"
+msgstr "Routage HTTP"
+
+#. module: database_expiration
+#. odoo-python
+#: code:addons/database_expiration/models/ir_http.py:0
+#, python-format
+msgid "Value must be greater than 1"
+msgstr "La valeur doit être supérieur à 1"
+
+#. module: database_expiration
+#. odoo-python
+#: code:addons/database_expiration/models/ir_http.py:0
+#, python-format
+msgid "Your database is expired"
+msgstr "L'accès à votre instance est expiré"
+
+#. module: database_expiration
+#. odoo-python
+#: code:addons/database_expiration/models/ir_http.py:0
+#, python-format
+msgid "Your database will expire in {} days"
+msgstr "Votre abonnement prend fin dans {} jours"
+
+#. module: database_expiration
+#. odoo-python
+#: code:addons/database_expiration/models/ir_http.py:0
+#, python-format
+msgid "Your database will expire today"
+msgstr "Votre abonnement expire aujourd'hui. L'accès à votre instance sera impossible, pensez à renouveler votre abonnement!"
