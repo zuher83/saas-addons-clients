@@ -24,10 +24,9 @@ class IrHttp(models.AbstractModel):
                 [("name", "=", "ey_theme_backend"), ("state", "=", "installed")], limit=1,
             )
         )
-        database_suspend = self.env["ir.config_parameter"].sudo(
-        ).get_param('database_suspend', False)
+        database_suspend = self.env["ir.config_parameter"].sudo().get_param('database_suspend')
 
-        if database_suspend:
+        if database_suspend == 'suspended':
             request.session.logout()
             request.redirect('/database-blocked')
         return res
@@ -35,15 +34,15 @@ class IrHttp(models.AbstractModel):
     @classmethod
     def _dispatch(cls, endpoint):
         response = super()._dispatch(endpoint)
-        database_suspend = request.env["ir.config_parameter"].sudo().get_param('database_suspend', False)
+        database_suspend = request.env["ir.config_parameter"].sudo().get_param('database_suspend')
         path = '/database-blocked'
 
         exludes_path = [path, '/bus/websocket_worker_bundle']
 
-        if database_suspend and request.httprequest.path not in exludes_path:
+        if database_suspend == "suspended" and request.httprequest.path not in exludes_path:
             return request.redirect(path)
 
-        if not database_suspend and request.httprequest.path == path:
+        elif database_suspend != "suspended" and request.httprequest.path == path:
             return request.redirect('/')
-
-        return response
+        else:
+            return response
