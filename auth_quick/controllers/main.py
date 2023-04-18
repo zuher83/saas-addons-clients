@@ -9,6 +9,7 @@ import werkzeug
 
 from odoo import http
 from odoo.http import request
+from odoo import SUPERUSER_ID
 
 _logger = logging.getLogger(__name__)
 
@@ -73,9 +74,10 @@ class AuthQuickMaster(http.Controller):
             return "Wrong token"
 
         build_login = result["data"]["build_login"]
-        user = request.env["res.users"].sudo().search([("login", "=", build_login)])
-        user.write({"auth_quick_token": token})
-        _logger.info("Successful Authentication as %s via token %s", build_login, token)
+        # user = request.env["res.users"].sudo().search([("login", "=", build_login)])
+        user = request.env["res.users"].with_user(SUPERUSER_ID).with_context(active_test=False).search([("login", "=", build_login)])
+        user.with_user(SUPERUSER_ID).with_context(active_test=False).write({"auth_quick_token": token})
+        _logger.debug("Successful Authentication as %s via token %s", build_login, token)
 
         if test_cr is False:
             # A new cursor is used to authenticate the user and it cannot see the
