@@ -12,7 +12,7 @@ class ResUsers(models.Model):
     @api.depends()
     def _compute_is_excluded_from_limiting(self):
         for user in self:
-            user_ids = ['base.default_user', 'base.template_portal_user_id', 'base.public_user', 'base.user_root', 'base.user_admin']
+            user_ids = ['base.default_user', 'base.template_portal_user_id', 'base.public_user', 'base.user_root']
             external_id = user.get_external_id()
             _logger.warning("external_id: %s", external_id[user.id])
             if external_id[user.id] in user_ids:
