@@ -35,7 +35,7 @@ msgstr "Routage HTTP"
 #. module: database_block
 #: model_terms:ir.ui.view,arch_db:database_block.database-blocked
 msgid "Suspended Site"
-msgstr "Site Suspendu"
+msgstr "Site Inaccessible"
 
 #. module: database_block
 #: model_terms:ir.ui.view,arch_db:database_block.database-blocked

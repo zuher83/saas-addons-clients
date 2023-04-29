@@ -7,29 +7,8 @@ import werkzeug
 import logging
 _logger = logging.getLogger(__name__)
 
-URL_REDIRECT = "www.google.com"
-
-
 class IrHttp(models.AbstractModel):
-
     _inherit = "ir.http"
-
-    def session_info(self):
-        res = super(IrHttp, self).session_info()
-
-        res["database_block_show_message_in_apps_menu"] = bool(
-            self.env["ir.module.module"]
-            .with_user(SUPERUSER_ID)
-            .search(
-                [("name", "=", "ey_theme_backend"), ("state", "=", "installed")], limit=1,
-            )
-        )
-        database_suspend = self.env["ir.config_parameter"].sudo().get_param('database_suspend')
-
-        if database_suspend == 'suspended':
-            request.session.logout()
-            request.redirect('/database-blocked')
-        return res
 
     @classmethod
     def _dispatch(cls, endpoint):
@@ -38,11 +17,16 @@ class IrHttp(models.AbstractModel):
         path = '/database-blocked'
 
         exludes_path = [path, '/bus/websocket_worker_bundle']
+        cur_user = request.env.user.id
 
-        if database_suspend == "suspended" and request.httprequest.path not in exludes_path:
-            return request.redirect(path)
+        if database_suspend and request.httprequest.path not in exludes_path:
+            if cur_user == 1:
+                return response
+            else:
+                request.session.logout()
+                return request.redirect(path)
 
-        elif database_suspend != "suspended" and request.httprequest.path == path:
+        elif not database_suspend and request.httprequest.path == path:
             return request.redirect('/')
         else:
             return response
