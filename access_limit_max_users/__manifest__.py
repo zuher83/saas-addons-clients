@@ -6,7 +6,7 @@
     "summary": """With this module you can limit number of users""",
     "category": "Hidden",
     "images": [],
-    "version": "14.0.1.1.1",
+    "version": "16.0.1.0.0",
     "application": False,
     "author": "IT-Projects LLC, Eugene Molotov",
     "support": "help@itpp.dev",
