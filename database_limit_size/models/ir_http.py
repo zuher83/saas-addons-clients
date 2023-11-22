@@ -17,6 +17,22 @@ def get_directory_size(start_path):
     return total_size
 
 
+class SaasDb(models.AbstractModel):
+    _name = "saas.db.limit.size"
+
+    def check_database_size(self):
+        self.env.cr.execute("select pg_database_size(%s)", [self.env.cr.dbname])
+        database_size = self.env.cr.fetchone()[0]
+
+        filestore_size = get_directory_size(self.env["ir.attachment"]._filestore())
+
+        total_size = database_size + filestore_size
+
+        result = human_size(total_size)
+
+        return result
+
+
 class IrHttp(models.AbstractModel):
 
     _inherit = "ir.http"
