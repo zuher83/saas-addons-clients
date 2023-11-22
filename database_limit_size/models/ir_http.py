@@ -19,6 +19,7 @@ def get_directory_size(start_path):
 
 class SaasDb(models.AbstractModel):
     _name = "saas.db.limit.size"
+    _description = "Saas DB Limit Size"
 
     def check_database_size(self):
         self.env.cr.execute("select pg_database_size(%s)", [self.env.cr.dbname])
