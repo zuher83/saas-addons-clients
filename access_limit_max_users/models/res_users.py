@@ -1,21 +1,19 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-import logging
 
-_logger = logging.getLogger(__name__)
 
 class ResUsers(models.Model):
     _inherit = "res.users"
 
     is_excluded_from_limiting = fields.Boolean(default=False, compute="_compute_is_excluded_from_limiting", store=True)
 
-    @api.depends()
+    @api.depends('active', 'groups_id')
     def _compute_is_excluded_from_limiting(self):
         for user in self:
             user_ids = ['base.default_user', 'base.template_portal_user_id', 'base.public_user', 'base.user_root']
             external_id = user.get_external_id()
-            _logger.warning("external_id: %s", external_id[user.id])
-            if external_id[user.id] in user_ids:
+
+            if external_id[user.id] in user_ids or not user.has_group('base.group_user') or (user.has_group('base.group_user') and user.active is False):
                 user.is_excluded_from_limiting = True
             else:
                 user.is_excluded_from_limiting = False
