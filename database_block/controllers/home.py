@@ -2,12 +2,20 @@ import odoo
 from odoo import http
 from odoo.http import request
 from odoo.service import security
-from odoo.addons.web.controllers.home import Home
-
-import logging
-_logger = logging.getLogger(__name__)
+from odoo.addons.web.controllers.home import Home, ensure_db
 
 class DatabaseSuspend(Home):
+
+    @http.route()
+    def web_client(self, s_action=None, **kw):
+        ensure_db()
+        response = super().web_client(s_action, **kw)
+        database_suspend = request.env["ir.config_parameter"].sudo().get_param('database_suspend')
+
+        if database_suspend and request.env.user.id != 1:
+            return request.redirect('/database-blocked')
+        else:
+            return response
 
     @http.route('/web/become', type='http', auth='user', sitemap=False)
     def switch_to_admin(self):
